@@ -1,2 +1,6 @@
-# web-330
-This is my Bellevue University web-330 course.
+# WEB 330 Enterprise JavaScript II
+## Contributors 
+*Zahava Gopin
+*Professor Krasso 
+
+
