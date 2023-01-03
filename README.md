@@ -1,6 +1,6 @@
 # WEB 330 Enterprise JavaScript II
 ## Contributors 
-*Zahava Gopin
+*Zahava Gopin  
 *Professor Krasso 
 
 
