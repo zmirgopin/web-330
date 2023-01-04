@@ -1,13 +1,21 @@
+/** 
+Title: site.css
+Author: Zahava Gopin
+Date: 3 January 2023
+Description: css styling for web 330
+*/
+
+/**Styling for the full page container*/
 #container{
     margin-top: 50px;
     margin-left: 100px;
     margin-right: 100px;
 }
-
+/**Styling for icons*/
 #icon-mode:hover{
     cursor: pointer;
 }
-
+/**Styling for icon text*/
 #icon-text{
     padding-left: 10px;
 }
@@ -15,12 +23,12 @@
 .pull-right{
     float: right;
 }
-
+/**Styling for the header*/
 .app-header{
     text-align: center;
     font-weight: 400;
 }
-
+/**Styling fo return home*/
 .return-home{
     color: #453674;
     text-decoration: none;
@@ -35,7 +43,7 @@
 .return-home:visited{
     color: #3C275A;
 }
-
+/**styling for the form */
 .form {
     display: -ms-inline-grid;
     grid-template-columns: auto;
