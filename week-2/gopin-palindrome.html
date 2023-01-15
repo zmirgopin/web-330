@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- code attribution 
+Title: gopin-palindrome.html
+Author: Zahava Gopin 
+Date: 15 January 2023
+Description: HTML for the palindrome app 
+-->
+
+<head>
+    <title>WEB 330 - Enterprise JavaScript II</title>  <!--Document Title -->
+
+    <link rel="stylesheet" type="text/css" href="../theme.css">  <!--link to theme styling-->
+    <link rel="stylesheet" type="text/css" href="../site.css">   <!--link to site styling-->
+    <link rel="stylesheet" type="text/css" href="gopin-palidrome.css">   <!--link to site styling-->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">  <!--Link to google fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--link to cdn styling-->
+
+        
+    <script src="../theme.js"></script>  <!--Link to JavaScript functions.-->
+</head>
+
+<body class="light-theme">
+    
+
+        <div class="assign-container">
+              <!--Icon to toggle the mode -->
+            <p><i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right" style="font-size: 28px;"><span id="icon-text"></span></i></p>
+
+             <p class="app-header">Welcome to the Palindrome App!</p>  <!--Heading for the page. -->
+        
+        <div class="assign-content">
+            <div class="card">
+                <div class="card-title">Palindrome Checker</div> <!--First card of the page. -->
+                        <div class="card-content">
+                                
+                   
+                            <div class="form"> <!--Form to fill in the possible palindrome-->
+                                            <div class="form-field"> 
+    
+                                                <label for="txtPhrase">Phrase value:</label> <!--Label for the input feild. -->
+                                                <input id="txtPhrase" class="input"> <!--Input for the card. -->
+    
+                                            </div>
+    
+                                            <div class="form-feild">
+                                     
+                                                <button id="btnCheckPhrase" class="btn btn-primary full width">Check Phrase</button> <!--Button to get results. -->
+                                            </div>
+                            </div>
+                        </div>
+                 </div>
+                </div>
+
+                <a href="../index.html" class="return-home">Return</a> <!--Option to return to the index web 330 page. -->
+
+            <div class="assign-content"> <!--Second card on the page. -->
+                <div class="card">
+                    <div class="card-title">Palindrome Results</div> <!--Card title. -->
+                    <div id="assign-results-header"></div> <!--Where the 'header' of the card goes- this contains the header variable. -->
+                    <div id="assign-results" class="assign-results-text"> <!--Whether its a palindrome or not, shows up here. -->
+                    <div class="card-content" id = "test"></div>
+                    </div>
+                </div>
+            </div>
+
+ 
+</div>
+
+
+
+<script>
+
+    /**
+================================
+Title: gopin-palindrome.html
+Author: Zahava Gopin 
+Date: 15 January 2023
+Description: JavaScript for gopin-palindrome.html
+================================
+*/
+        /**
+         * Function to get todays date. 
+         */
+function getTodaysDate()
+    {
+        return new Date().toLocaleDateString('en-US');
+    }
+
+        /**
+         * Function to get lenght of a string. 
+         */
+
+function getLength(str)
+    {
+        return str.length;
+    }
+
+        /**
+         * Function to reverse the string. 
+         */
+function reverse(str)
+    {
+        const first = str.split(' ');
+        const firstReversed =  first.reverse(str);
+        return firstReversed.join('');
+    }
+
+        /**
+         * Function to see if the string is a palindrome. 
+         */
+function isPalindrome(str)
+    {
+    const reversedPhrase = reverse();
+    return reversedPhrase.test(str);
+    }
+
+
+
+        /**
+         * Onclick function to get results. 
+         */
+
+document.getElementById("btnCheckPhrase").onclick=
+
+function myFunction()
+{  
+    
+    let txtPhrase = document.getElementById("txtPhrase").value;             //Capturing the inputted data in a variable. 
+    let assignResults = document.getElementById("assign-results").innerHTML;  //Capturing the assign-results div into a variable. 
+ 
+
+    const today = getTodaysDate();    //Varible to get todays date. 
+    const len = getLength(txtPhrase);  //Assigning the length to the txtPhrase variable. 
+    const reversedPhrase = reverse(txtPhrase); //Assigning the reversed phrase to txtPhrase variable. 
+
+        /**
+         * Creating a variable for all of the header information. 
+         */
+
+    let header = "<p>Date: " + today + "</p>"+  "<p>Original Phrase: " + txtPhrase +  "</p>" + "<p>Reversed Phrase: " + reversedPhrase +  "</p>" + "<p>Phrase Length: " + len + "</p>"; 
+
+    document.getElementById("assign-results-header").innerHTML = header; //Placing the header variable information into the correct div. 
+
+    txtPhrase.toLowerCase(); //Making sure the txtPhrase is in lower case. 
+
+        /**
+         * If else statement, if the txtPhrase is equal to the isPalindrome function then the inputted word is a palindrome. Otherwise, the inputted word is not a palindrome and the app should display that. 
+         */
+
+    if (txtPhrase === isPalindrome) 
+        {                                       
+             document.getElementById("test").innerHTML = (txtPhrase + "<b><u> is</u> </b>" +" a palindrome");   
+        }
+        else
+        {                  
+            document.getElementById("test").innerHTML = (txtPhrase + "<b> <u> is not</u></b>" + " a palindrome");
+        }
+ 
+}   
+
+
+
+</script>
+</body>
+</html>
