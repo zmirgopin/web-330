@@ -67,8 +67,3 @@ export class Bill{
 }
 }
 
-function myName (name){
-    const myName= myName('Zahava');
-    return name;
-}
-console.log(myName);

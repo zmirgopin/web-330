@@ -13,7 +13,7 @@ Description: HTML for the restaurant app
 
     <link rel="stylesheet" type="text/css" href="../theme.css">  <!--link to theme styling-->
     <link rel="stylesheet" type="text/css" href="../site.css">   <!--link to site styling-->
-    <link rel="stylesheet" type="text/css" href="restaurant.css">   <!--link to site styling-->
+    <link rel="stylesheet" type="text/css" href="gopin-restaurant.css">   <!--link to site styling-->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">  <!--Link to google fonts-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--link to cdn styling-->
 
@@ -153,25 +153,42 @@ Description: HTML for the restaurant app
         </div> 
     </div>
 
+    
+
         <a href="../index.html" class="return-home">Return</a>
         
         <div class="card">
             <div class="card-title">Order Summary</div>
             <div class = "card-content assign-results-text" id="order-total">
-        
             </div>
         </div>
 
 </div>
 </body>
 
+<script type = "module" >
+import {Bill, Beverage, Appetizer, MainCourse, Dessert} from "./index.js";
 
 
-<script type="module">
-import {Bill, Bevarage, Appetizer, MainCourse, Dessert} from "./index.js";
 
 document.getElementById("btnOrder").onclick= function ()
 {
+
+    const beveragesEL = document.getElementById("beverages");
+    const beverages = beveragesEL.getElementsByTagName("input");
+
+    const appetizersEL = document.getElementById("appetizers");
+    const appetizer = appetizersEL.getElementsByTagName("input");
+
+    const mainCoursesEL = document.getElementById("main-courses");
+    const mainCourses = mainCoursesEL.getElementsByTagName("input");
+
+    
+    const dessertsEL = document.getElementById("desserts");
+    const desserts = dessertsEL.getElementsByTagName("input");
+
+    let bill = new Bill();
+
     for(let beverage of beverages)
     {
         if(beverage.checked)
@@ -209,5 +226,5 @@ document.getElementById("btnOrder").onclick= function ()
 }
 
 </script>
-</body>
+
 
