@@ -7,6 +7,10 @@ Description: JavaScript for restaurant.html
 ================================
 */
 
+//Add export statements for each of the classes you created.
+
+"use strict";
+
 export * from "./appetizer.js";
 export * from "./beverage.js";
 export * from "./dessert.js";
