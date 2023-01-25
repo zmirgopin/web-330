@@ -28,6 +28,38 @@ Description: HTML for the calorie app
           <!--Icon to toggle the mode -->
         <p><i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right" style="font-size: 28px;"><span id="icon-text"></span></i></p>
 
+        <p class="app-header">Welcome to the Calorie App!</p>  <!--Heading for the page. -->
+
+        <div class="assign-content">
+            <div class="card">
+                <div class="card-title">Calorie Search Form</div>
+                <div class = "card-content">
+                    <div class="form">
+                        <div class="form-feild">
+                            <label for="txtFoodItem"> 
+                                <input type="text" id="txtFoodItem">
+                                Enter a food item:
+                            </label>
+                        </div>
+                <span id="foodList">(Ex: Egg, Apple, Hamburger, Fries, Banana, Soda)</span>
+
+                <button id="btnSearch" class="btn btn-primary full width">Search</button> 
+                </div>
+            </div>
+
+<div class="assign-content">
+            <a href="../index.html" class="return-home">Return</a>
+            <div class="card">
+                <div class="card-title">Search Results</div>
+
+                <div class = "card-content assign-results-text" id="order-total">
+
+                    <th id="searchResults"></th>
+                    <td id="searchResults"></td>
+                </div>
+            </div>
+                
+
 </div>
 </body>
 
