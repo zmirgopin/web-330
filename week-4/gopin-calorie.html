@@ -19,7 +19,7 @@ Description: HTML for the calorie app
 
         
     <script src="../theme.js"></script>  <!--Link to JavaScript functions.-->
-</head>x
+</head>
 
 <body class="light-theme">
     
@@ -46,6 +46,7 @@ Description: HTML for the calorie app
                 <button id="btnSearch" class="btn btn-primary full width">Search</button> 
                 </div>
             </div>
+        </div>
 
 <div class="assign-content">
             <a href="../index.html" class="return-home">Return</a>
@@ -53,18 +54,24 @@ Description: HTML for the calorie app
                 <div class="card-title">Search Results</div>
 
                 <div class = "card-content assign-results-text" id="order-total">
-
+                <table>
                     <th id="searchResults"></th>
                     <td id="searchResults"></td>
+                </table>
                 </div>
             </div>
-                
-
 </div>
 </body>
 
 <script>
+"use strict";
+import {CalorieConverter} from "./calorie-converter.js";
 
+let txtFoodItemEl = document.getElementById("txtFoodItem").innerHTML;
 
+document.getElementById("btnSearch").onclick = function 
+{
+
+};
 
 </script>

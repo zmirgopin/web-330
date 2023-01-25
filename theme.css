@@ -23,6 +23,11 @@ body.light-theme{     /**Setting the variables for the light theme. */
     --btn-hover-background-color:#d6a800;
     --btn-hover-color: #4f3674;
     --input-border-color:#ccc;
+    --table-header-background-color: #4F3674;
+    --table-header-color: #fff;
+    --table-border-color: #ddd;
+    --table-hover-background-color: #D6A800;
+    --table-hover-color: #4F3674;
 
 }
 
@@ -79,6 +84,24 @@ h4{
     border-color: var(--heading-border-color);
 }
 
+.table:hover{
+    background-color: var(--table-hover-background-color);
+    color: var(--table-hover-color);
+    cursor: pointer;
+}
+
+.table th{
+    background-color: var(--table-header-background-color);
+    color: var(--table-header-color);
+    border: var(--table-border-color);
+}
+
+.table td{
+    border: var(--table-border-color);
+}
+
+
+
 /**Dark theme variables*/
 
 body.dark-theme{
@@ -99,6 +122,11 @@ body.dark-theme{
     --btn-hover-background-color:#7d4787;
     --btn-hover-color: #fff;
     --input-border-color:#303030;
+    --table-header-background-color: #D176E1;
+     --table-header-color: #fff;
+    --table-border-color: #303030;
+     --table-hover-background-color: #7D4787;
+     --table-hover-color: #fff;
 
 }
 
