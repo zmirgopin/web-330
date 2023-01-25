@@ -5,14 +5,21 @@ export class CalorieConverter extends FoodModel
 {
  
     static data = [
-        {id: 1007, name: "Egg", calories: 78}, {id: 1008, name: "Apple", calories: 95}, {id: 1009, name: "Hamburger", calories: 354}, {id: 1010, name: "Fries", calories: 400}, {id: 1011, name: "Banana", calories: 105}, {id: 1012, name: "Soda", calories: 150}
+        new FoodModel(1007, 'Egg', 78), 
+        new FoodModel(1008, 'Apple', 95), 
+        new FoodModel(1009, 'Hamburger', 354), 
+        new FoodModel(1010, 'Fries', 400), 
+        new FoodModel(1011, 'Banana', 105), 
+        new FoodModel(1012, 'Soda', 150)
     ];
+
+
 
     static find (str)
     { 
         data.filter(function(data)
         {
-        return data  === str
+        return data.name  === str
         });
     };
 };
