@@ -1,6 +1,18 @@
+/** 
+Title: gopin-calories.css
+Author: Zahava Gopin
+Date: 25 January 2023
+Description: css styling for gopin-calorie.html
+*/
+
+/**Styling for the html id "foodList.*/
 #foodList{
     float: left;
     color: #df546a;
     font-size: 12px;
     letter-spacing: 2px;
+}
+/**Padding for the html id searchResults*/
+#searchResults{
+    padding-bottom: 20px;
 }

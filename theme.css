@@ -83,25 +83,38 @@ h4{
     border-width: 1px;
     border-color: var(--heading-border-color);
 }
+table{
 
-.table:hover{
+    border-collapse: collapse;
+    margin-left: 20px;
+}
+
+th{
+    text-align: left;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: var(--table-header-background-color);
+    color: var(--table-header-color);
+    border: 1px;
+    border-style: solid;
+    border-color: var(--table-border-color);
+    font-size: 20px;
+}
+
+td{
+    text-align: left;
+    border: 1px;
+    border-style: solid;
+    border-color: var(--table-border-color);
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+table:hover{
     background-color: var(--table-hover-background-color);
     color: var(--table-hover-color);
     cursor: pointer;
 }
-
-.table th{
-    background-color: var(--table-header-background-color);
-    color: var(--table-header-color);
-    border: var(--table-border-color);
-}
-
-.table td{
-    border: var(--table-border-color);
-}
-
-
-
 /**Dark theme variables*/
 
 body.dark-theme{

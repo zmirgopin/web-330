@@ -9,69 +9,112 @@ Description: HTML for the calorie app
 -->
 
 <head>
-    <title>WEB 330 - Enterprise JavaScript II</title>  <!--Document Title -->
+    <title>WEB 330 - Enterprise JavaScript II</title> <!--Document Title -->
 
-    <link rel="stylesheet" type="text/css" href="../theme.css">  <!--link to theme styling-->
-    <link rel="stylesheet" type="text/css" href="../site.css">   <!--link to site styling-->
-    <link rel="stylesheet" type="text/css" href="gopin-calorie.css">   <!--link to site styling-->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">  <!--Link to google fonts-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--link to cdn styling-->
+    <link rel="stylesheet" type="text/css" href="../theme.css"> <!--link to theme styling-->
+    <link rel="stylesheet" type="text/css" href="../site.css"> <!--link to site styling-->
+    <link rel="stylesheet" type="text/css" href="gopin-calorie.css"> <!--link to site styling-->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!--Link to google fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--link to cdn styling-->
 
-        
-    <script src="../theme.js"></script>  <!--Link to JavaScript functions.-->
+
+    <script src="../theme.js"></script> <!--Link to JavaScript functions.-->
 </head>
 
 <body class="light-theme">
-    
+
 
     <div class="assign-container">
-          <!--Icon to toggle the mode -->
-        <p><i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right" style="font-size: 28px;"><span id="icon-text"></span></i></p>
+        <!--Icon to toggle the mode -->
+        <p><i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right"
+                style="font-size: 28px;"><span id="icon-text"></span></i></p>
 
-        <p class="app-header">Welcome to the Calorie App!</p>  <!--Heading for the page. -->
+        <p class="app-header">Welcome to the Calorie App!</p> <!--Heading for the page. -->
 
-        <div class="assign-content">
+        <div class="assign-content"> <!--First card on the page-->
             <div class="card">
-                <div class="card-title">Calorie Search Form</div>
-                <div class = "card-content">
+                <div class="card-title">Calorie Search Form</div> <!--Card title-->
+                <div class="card-content">
                     <div class="form">
-                        <div class="form-feild">
-                            <label for="txtFoodItem"> 
-                                <input type="text" id="txtFoodItem">
-                                Enter a food item:
+                        <div class="form-feild"> <!--Form to enter a food option.-->
+                            <label for="txtFoodItem">Enter a food item:
+                                <input type="text" id="txtFoodItem"> <!--Input feild.-->
                             </label>
                         </div>
-                <span id="foodList">(Ex: Egg, Apple, Hamburger, Fries, Banana, Soda)</span>
+                        <span id="foodList"></span>
 
-                <button id="btnSearch" class="btn btn-primary full width">Search</button> 
+                        <button id="btnSearch" class="btn btn-primary full width">Search</button> <!--Button to click for results.-->
+                    </div>
                 </div>
             </div>
-        </div>
 
-<div class="assign-content">
-            <a href="../index.html" class="return-home">Return</a>
-            <div class="card">
-                <div class="card-title">Search Results</div>
+            <div class="assign-content"> <!--Second card on the page.-->
+                <a href="../index.html" class="return-home">Return</a> <!--Link to return to the index. -->
+                <div class="card">
+                    <div class="card-title">Search Results</div> <!--Card title.-->
 
-                <div class = "card-content assign-results-text" id="order-total">
-                <table>
-                    <th id="searchResults"></th>
-                    <td id="searchResults"></td>
-                </table>
+                    <div class="card-content assign-results-text" id="searchResults">
+                        <table>  <!--Table to display results. -->
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Calories</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                    </div>
                 </div>
             </div>
-</div>
 </body>
 
-<script>
-"use strict";
-import {CalorieConverter} from "./calorie-converter.js";
+<script type="module">
+/**
+================================
+Title: gopin-calorie.html
+Author: Zahava Gopin 
+Date: 25 January 2023
+Description: JavaScript for gopin-calorie.html
+================================
+*/
 
-let txtFoodItemEl = document.getElementById("txtFoodItem").innerHTML;
+    "use strict";
+    import { CalorieConverter } from "./calorie-converter.js"; //Importing the CalorieConverter class.
 
-document.getElementById("btnSearch").onclick = function 
-{
+    let txtFoodItemEl = document.getElementById("txtFoodItem");
+/**
+ * Creating a new onclick function. 
+*/
+    document.getElementById("btnSearch").onclick = function () {
+        let txtFoodItem = txtFoodItemEl.value;            //Capturing the value of the inputted food. 
+        let foods = CalorieConverter.find(txtFoodItem);   //'Matching' the inputted foods in the CalorieConverter class. 
+        let tableData = "";                               //Assigning an empty string to the table data cells. 
+        for (const food of foods) {                       //Looping through the foods to display the right food information in the table. 
 
-};
+            let test =
+                `<tr>
+            <td>${food.name}</td>
+            <td>${food.calories}</td>
+        </tr>`
+            tableData += test;
+        }
+        tableData += `</tbody></table>`;                  //Closing out the table. 
+        document.getElementById("tableBody").innerHTML += tableData;   //Placing the data in the table. 
+    };
+
+    document.addEventListener("keyup", function(e){       //Adding an keyup event so user can push enter instead of clicking search. 
+        if(e.key == "Enter"){
+            document.getElementById("btnSearch").click();
+        }
+    });
+
+    let foodList = CalorieConverter.data;                //Adding a span of all the food options. 
+    let foodListData = "<i>(Ex: ";
+        for (const iterator of foodList) {
+            foodListData += iterator.name + ", ";
+        }
+        foodListData = foodListData.slice(0,-2)+")</i>";
+    document.getElementById("foodList").innerHTML = foodListData;
 
 </script>

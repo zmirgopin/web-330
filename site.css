@@ -46,6 +46,7 @@ Description: css styling for web 330
 }
 /**styling for the form */
 .form {
+    padding: 35px;
     display: -ms-inline-grid;
     grid-template-columns: auto;
 }
