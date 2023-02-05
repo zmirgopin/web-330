@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- code attribution 
+Title: gopin-bobs-auto-repair.html
+Author: Zahava Gopin 
+Date: 4 February 2023
+Description: HTML for the bobs auto repair shop app
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" type="text/css" href="../theme.css"> <!--link to theme styling-->
+    <link rel="stylesheet" type="text/css" href="../site.css"> <!--link to site styling-->
+    <link rel="stylesheet"  href="gopin-bobs-auto-repair.css"> <!--link to site styling-->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!--Link to google fonts-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--link to cdn styling-->
+
+    <title>WEB 330 - Enterprise JavaScript II</title> <!--Document Title -->
+
+    <script src="../theme.js"></script> <!--Link to JavaScript functions.-->
+</head>
+
+<body class="light-theme">
+
+
+    <div class="assign-container"> 
+        <!--Icon to toggle the mode -->
+        <p><i onclick="toggleMode(this)" id="icon-mode" class="fa fa-toggle-off pull-right"
+                style="font-size: 28px;"><span id="icon-text"></span></i></p>
+
+        <p class="app-header">Welcome to Bob's Automotive Repair Shop!</p>
+        <div class="assign-content">
+            <div class="card">
+                <div class="card-title">Product Listing</div> <!--List of the products in a drop down menu.-->
+                <div class="card-content">
+                    <div id="cart-icon"><cart-component></cart-component></div>
+                    <div class="form">
+                        <div class="form-feild"> 
+                            <label for="productList">Choose a product:
+                                <select id="productList" class="drop-down-menu">
+
+                                    <option value="select">--Select--</option>
+                                    <option value="19.99">Oil Change</option>
+                                    <option value="18.44">Filter Replacement</option>
+                                    <option value="9.99">Wiper Fluid Refill</option>   
+
+                                   </select>
+                            </label>
+                            <i id="cart-message">To view your shopping cart click on the cart icon</i> <!--Button to add to cart.-->
+                            <button id="btnAddProduct" class="btn btn-primary full width">Add to Cart</button>
+                        </div> 
+                    </div>
+                </div>
+                </div>
+            </div>
+    
+                <div class="assign-content"> <!--Return to index.-->
+                    <a href="../index.html" class="return-home">Return</a> 
+                    <div class="card">
+                        <div class="card-title">Shopping Cart</div> <!--The card where the "shopping cart" appears.-->
+    
+                        <div class="card-content assign-results-text" id="shoppingCart">
+                      
+                        </div>
+                    </div>
+                </div>
+</div>
+</body>
+
+
+<script type="module">
+/**
+    ================================
+    Title: gopin-bobs-auto-repair.html
+    Author: Zahava Gopin 
+    Date: 4 February 2023
+    Description: JavaScript for gopin-bobs-auto-repair.html
+    ================================
+    */
+/**
+ * Importing all of the classes created in the JavaScript files for this app. 
+*/
+"use strict";
+import {CartComponent} from "./cart-component.js";
+import {ShoppingCart } from "./shopping-cart.js";
+import { Product} from "./Product.js";
+
+let shoppingCart = new ShoppingCart(); //Creating a new shopping cart instance. 
+
+setCartCount();
+document.getElementById("btnAddProduct").onclick = function(){ //On click event 
+    let productList = document.getElementById("productList")
+    let product = productList.options[productList.selectedIndex].text;  //capturing the product name and value to add to the table. 
+    let productValue = productList.options[productList.selectedIndex].value; 
+
+    if (product != "--Select--") {
+        let oneProduct = new Product(product, productValue); 
+        shoppingCart.add(oneProduct);                        //Adding a product to the cart. 
+       setCartCount();
+       alert(`${product} was added to your shopping cart!`); //Alert the a product was added to a cart. 
+       document.getElementById("productList").value = "select";
+    }
+
+
+}
+
+document.getElementById("cartIcon").onclick = function (){ //creating another on click event to display the products. 
+    let cartDisplayTable = `<table>  
+                                <thead id="shoppingCart">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="shoppingCart"> `;
+    for (const test of shoppingCart) { //Displaying the data in the table. 
+        cartDisplayTable += `
+        <tr>
+            <td>${test.id}</td>
+            <td>${test.name}</td>
+            <td>${test.price}</td>
+        </tr>    
+        `
+    }
+
+    cartDisplayTable += `</tbody></table>`;
+    document.getElementById("shoppingCart").innerHTML = cartDisplayTable;
+                    
+}
+
+function setCartCount(){                    //Setting the cart count. 
+    document.getElementById("cart-count").innerHTML = shoppingCart.count();
+}
+
+</script>
