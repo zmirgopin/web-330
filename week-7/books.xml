@@ -1,3 +1,10 @@
+<!-- code attribution 
+Title: books.xml
+Author: Zahava Gopin 
+Date: 13 February 2023
+Description: XML for the whatabook app
+-->
+<!--Each book has data for isbn, title, description, pages, and authors.-->
 <books>
 
     <book>

@@ -14,7 +14,6 @@ Description: HTML for the whatabook app
 
     <link rel="stylesheet" type="text/css" href="../theme.css"> <!--link to theme styling-->
     <link rel="stylesheet" type="text/css" href="../site.css"> <!--link to site styling-->
-    <link rel="stylesheet" href="gopin-future-value.css"> <!--link to site styling-->
     <link rel="stylesheet" type="text/css" href="../flex-layout.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!--Link to google fonts-->
@@ -36,14 +35,14 @@ Description: HTML for the whatabook app
         <p class="app-header">Welcome to the Whatabook, Part 1 App!</p>
 
         <div class="assign-content">
-            <div class="card">
+            <div class="card">                                <!--First card that displays the list of books.-->
                 <div class="card-title">Book Listing</div>
                 <div class="card-content" id="bookList">
 
                 </div>
             </div>
 
-            <a href="../index.html" class="return-home">Return</a> <!--Card where results appear.-->
+            <a href="../index.html" class="return-home">Return</a> <!--Card where specific book information appears.-->
             <div class="card">
                 <div class="card-title">Selected Book</div>
                 <div class="card-content" id="selectedBook">
@@ -59,7 +58,13 @@ Description: HTML for the whatabook app
 </html>
 
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
+"use strict";
+/*
+* Fetching the books.xml file which stores all of the data for the list of books.
+* Adding a function to load the books. 
+* adding an event when click on ISBN. 
+*/
+    document.addEventListener('DOMContentLoaded', (event) => { 
         let fileName = "books.xml";
 
         fetch(fileName)
@@ -68,19 +73,23 @@ Description: HTML for the whatabook app
                 let domParser = new DOMParser;
                 let xmlBooks = domParser.parseFromString(data, "text/xml");
 
-                loadBooks() = xmlBooks;
+                loadBooks(xmlBooks);
                 addIsbnClickEvents();
             })
     });
-
+/*
+* Loading the books into a table.
+*/
     function loadBooks(xml) {
-        let books = xml.getElementsByTagName("books");
-        let tableData = `<table>  
-                        <thead id="bookTable" class= "table">
+        let books = xml.getElementsByTagName("book");
+        let tableData = `<table id="bookTable" class="table">  
+                        <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Price</th>
+                                <th>ISBN</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Pages</th>
+                                <th>Authors</th>
                             </tr>
                         </thead><tbody>`
 
@@ -96,7 +105,7 @@ Description: HTML for the whatabook app
             let authors = book.getElementsByTagName("authors")[0].childNodes[0].nodeValue;
 
             tableData += `<tr>
-                <td data-value="ISBN"<a href="books.xml" class="isbn-link">${isbn}</a></td>
+                <td data-value="ISBN"><a href="books.xml" class="isbn-link">${isbn}</a></td>
 
                 <td data-value="Title">${title}</td>
 
@@ -108,35 +117,38 @@ Description: HTML for the whatabook app
                 </tr>`
         };
 
-        tableData+= `</tbody></table>`;
-        document.getElementById("bookList").innerHTML= tableData;
+        tableData += `</tbody></table>`;
+        document.getElementById("bookList").innerHTML = tableData;
 
     };
-
-    function anchorClicked(e){
+/*
+* When click ISBN of a book the information of the book is displayed below.
+*/
+    function anchorClicked(e) {
         e.preventDefault();
 
         let self = this;
+        console.log(self)
         let cell = self.parentElement;
         let row = cell.parentElement;
 
         let data = row.querySelectorAll("td");
+        console.log(data)
 
-        bookData += `<ul>`
-            for (const field of data) {
-                bookData += `<li><b>${field.dataset.value}</li>`
-            }
-        `</ul>`;
+        let bookData = `<ul style="list-style-type: none">`
+        for (const field of data) {
+            bookData += `<li><b>${field.dataset.value}</b> ${field.textContent}</li>`
+        }
+        bookData += `</ul>`;
 
-        bookData = document.getElementById("selectedBook").innerHTML
-        
+        document.getElementById("selectedBook").innerHTML = bookData;
     };
 
-    function addIsbnClickEvents(){
+    function addIsbnClickEvents() {
         let viewButtons = document.querySelectorAll("#bookTable tbody .isbn-link");
-        for (let index = 0; index < array.length; index++) {
+        for (let index = 0; index < viewButtons.length; index++) {
             viewButtons[index].addEventListener("click", anchorClicked);
-            
+
         }
     }
 
